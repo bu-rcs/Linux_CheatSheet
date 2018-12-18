@@ -1,0 +1,293 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Linux Cheatsheet for SCC
+% Katia Oleinik, RCS
+% Boston University
+% 2018
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[10pt,landscape]{article}
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{multicol,multirow}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue, urlcolor=blue]{hyperref}
+\usepackage{listings}
+\lstset{
+  language=bash,
+  basicstyle=\ttfamily
+}
+
+
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+    { \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+\pagestyle{empty}
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+% -----------------------------------------------------------------------
+
+\title{ Linux Guide for SCC users}
+
+\begin{document}
+\raggedright
+\footnotesize
+
+\begin{center}
+     \LARGE{\textbf{ Linux Guide for SCC users}} \\
+\end{center}
+
+\begin{multicols}{2}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{1pt}
+
+\section{Directory Commands}
+\begin{tabular}{ll}
+\emph{command} & \emph{description} \\
+
+\verb!pwd! & print full path of the current directory\\
+\verb!tree! & list contents of a directory in a tree-like format\\\\
+\texttt{cd /project/myproject/mydir} & change directory specifying full path name\\
+\texttt{cd mydir} & change directory to sub-directory \textit{mydir}\\
+\texttt{cd ..} & go to the parent directory\\
+\texttt{cd } & go to home directory\\
+\\
+\texttt{mkdir dirname } & create a new directory \textit{dirname}\\
+\texttt{mkdir -p /path.to/dirname } & create new directory, make parent directories as needed\\
+\texttt{cp -r dir1 /path/to/dir2} & copy directory \textit{dir1} to \textit{dir2}, creating \textit{dir2} if needed\\
+\texttt{mv dir1 dir2} & rename (move) directory \textit{dir1} to \textit{dir2}\\
+\texttt{mv mydir /path/to/another/dir} & move directory \textit{mydir} to another location\\ 
+\texttt{rmdir dirname } & delete empty directory \textit{dirname}\\
+\texttt{rm -rf dirname } & delete \textit{dirname} with all sub-directories and files\\\\
+\end{tabular}
+
+
+\section{File Commands}
+\begin{tabular}{ll}
+\emph{command} & \emph{description} \\
+
+\verb!ls! & list all files and sub-directories\\
+\texttt{ls -l} & display all information about files and sub-directories\\
+\texttt{ls -la} & directory listing including dotfiles\\
+\texttt{ls -lh} & print file size in human readable format\\
+\texttt{ls -lS} & sort files by their size\\
+\texttt{ls -lrt} & sort files by modification time in reverse order\\\\
+\texttt{rm filename} & delete file\\
+\texttt{cp file1 file2} & copy file \textit{file1} to file \textit{file2}\\
+\texttt{cp myfile mydir} & copy file \textit{myfile} to sub-directory \textit{mydir}\\
+\texttt{cp myfile /path/to/mydir} & copy file \textit{myfile} to a directory\\
+\texttt{cp /path/to/myfile  .} & copy file \textit{myfile} from other directory to my current directory\\
+\texttt{cp -r /path/to/mydir  .} & copy directory \textit{mydir} to my current directory\\
+\texttt{mv file1 file2} & rename (move) file \textit{file1} to file \textit{file2}\\
+\texttt{mv myfile /path/to/mydir} & move file \textit{myfile} to another location\\\\
+\texttt{head myfile} & display first 10 lines of  \textit{myfile} \\
+\texttt{head -n 20 myfile} & display first 20 lines of  \textit{myfile} \\
+\texttt{tail myfile} & display last 10 lines of  \textit{myfile} \\
+\texttt{cat myfile} & display content of  \textit{myfile} \\
+\texttt{more myfile} & output content of \textit{myfile} page by page \\
+\texttt{less myfile} & output content of \textit{myfile} page by page (press \textit{q} to exit)\\\\
+\texttt{wc myfile} & output the number of lines, words and bytes in \textit{myfile} \\
+\texttt{wc -l myfile} & number of lines in \textit{myfile} \\
+\texttt{wc -w myfile} & number of words in \textit{myfile} \\
+\texttt{wc -c myfile} & number of characters in \textit{myfile} \\\\
+\texttt{cat file1 file2} & concatenate 2 (or more ) files \\
+\texttt{cat file*.txt > all.txt} & concatenate files and save result in file \textit{all.txt} \\
+
+\\
+\end{tabular}
+
+
+\section{Searching Files and Directories}
+\begin{tabular}{ll}
+
+\emph{command} & \emph{description} \\
+
+\texttt{grep \textit{options pattern files}} & search for pattern in files\\
+\texttt{grep -i "matrix" *.csv} & search for word \textit{matrix} in all \textit{csv} files ignoring word case\\
+\texttt{\hspace*{6mm} -i} & ignore case\\
+\texttt{\hspace*{6mm} -l} & display file names\\
+\texttt{\hspace*{6mm} -n} & display line numbers and matching lines\\
+\texttt{\hspace*{6mm} -I} & exclude binary files\\
+\texttt{\hspace*{6mm} -v} & files not containing matching word\\
+\texttt{grep -rnI "matrix" .} & search recursively all files and folders, exclude binary files\\
+\texttt{grep -i "matrix|vector" *} & search all files for words \textit{matrix} and \textit{vector} \\
+\texttt{zgrep "matrix" myfile.gz} & search gzip file\\
+\\
+
+\texttt{find \textit{path expression}} & search for files\\
+\texttt{find . -name *.txt} & search current dir. and all sub-directories for *.txt files\\
+\texttt{find . -iname *.txt} & case insensitive search\\
+\texttt{find . -iname foo -type d} & case insensitive search, only directory names \\
+\texttt{find . -iname foo -type f} & case insensitive search, only file names \\
+\texttt{find . -mtime 7} & find files modified in the last 7 days \\
+\texttt{find . -size +100M} & find files larger than 100MB \\
+
+\\
+\end{tabular}
+\section{File Transfer and Download}
+\begin{tabular}{ll}
+
+\emph{command} & \emph{description} \\
+\texttt{scp myfile.csv user@scc2.bu.edu:.} & copy file from local computer to SCC home dir.\\
+\texttt{scp user@scc2.bu.edu:/path/to/file .} & copy file from SCC to local computer \\
+\texttt{rsync -a mydir user@scc2.bu.edu:\~{}} & copy directory from local computer to SCC  \\
+\texttt{wget http://bu.edu/document.txt} & download file from the Web  \\
+\\
+\end{tabular}
+
+\section{Shortcuts}
+\begin{tabular}{ll}
+
+\emph{command} & \emph{description} \\
+\texttt{ctrl+c} & halt the current command\\
+\texttt{ctrl+z} & pause the current command, resume - fg or bg (background)\\
+\texttt{ctrl+d} & logout of the current session, similar to \texttt{exit}\\
+\texttt{ctrl+l} & clear the screen\\
+\texttt{ctrl+a} & go to the start of the command line\\
+\texttt{ctrl+e} & go to the end of the line\\
+\texttt{ctrl+u} & delete from cursor to the start of the line\\
+\texttt{ctrl+k} & delete from cursor to the end of the line\\
+\texttt{ctrl+w} & delete from cursor to the start of the word (backwards)\\
+\texttt{alt+b} & move backwards one word\\
+\texttt{alt+f} & move forward one word\\
+\texttt{alt+d} & delete to end of the word starting from cursor\\
+\\
+\texttt{history} & print recent commands\\
+\texttt{ctrl+r} & type to bring up a recent command\\
+\texttt{ctrl+g} & escape from history searching mode\\
+\texttt{up- and down-arrows} & browse through recent commands\\
+\texttt{!!} & repeat the last command\\
+\texttt{!!foo} & repeat the most recent command that starts with word foo\\
+
+\\
+\end{tabular}
+
+
+
+
+
+\section{File Permissions}
+\begin{tabular}{ll}
+
+\emph{command} & \emph{description} \\
+\texttt{chmod octal filename} & Change file mode \\
+\texttt{\hspace*{8mm} 0 } & no permission to read, write or execute \\
+\texttt{\hspace*{8mm} 1 } & permission to execute only \\
+\texttt{\hspace*{8mm} 2 } & permission to write only \\
+\texttt{\hspace*{8mm} 3 } & permission to write and execute \\
+\texttt{\hspace*{8mm} 4 } & permission to read only \\
+\texttt{\hspace*{8mm} 5 } & permission to read and execute \\
+\texttt{\hspace*{8mm} 6 } & permission to read and write \\
+\texttt{\hspace*{8mm} 7 } & permission to read, write and execute \\
+\texttt{chmod 700 filename } & all permissions for user, none- for everyone else \\
+\texttt{chmod 660 filename } & read and write permissions for user and group only \\\\
+\texttt{chmod +x myscript} & make file \textit{myscript} executable \\
+\texttt{chmod u+x myscript} & make file \textit{myscript} executable by owner \\
+\texttt{chmod +r myfile} & make file readable by everyone \\
+\texttt{chmod g+w myfile} & give write permissions to everyone in my group \\
+\texttt{chmod o-rwx myfile} & remove all permissions from users not in the group \\
+
+\\
+\end{tabular}
+
+\section{Compression/Archives}
+\begin{tabular}{ll}
+
+\emph{command} & \emph{description} \\
+\texttt{tar xvf myArchive.tar} & extract files from *.tar archive\\
+\texttt{tar xzvf myArchive.tar.gz} & extract files from *.tar.gz or *.tgz archive\\
+\texttt{tar tzvf myArchive.tar.gz} & list files in *.tar.gz or *.tgz archive\\
+\texttt{tar czvf archive.tar.gz file1 file2} & compress 2 files into archive\\
+\texttt{tar czvf myDir.tgz myDir} & archive and compress directory \textit{myDir} \\
+\texttt{tar czvf myDir.tgz .} & archive and compress current directory \\
+\texttt{tar xjvf myArchive.tar.gz} & extract files from *.tar.bz2archive\\
+\\
+\texttt{gzip myfile} & compress \textit{myfile}; result - myfile.gz \\
+\texttt{gunzip myfile.gz} & decompress \textit{myfile.gz} file;  \\
+\\
+\texttt{bzip2 myfile} & compress \textit{myfile}; result - myfile.bz2 \\
+\texttt{bunzip2 myfile.bz2} & decompress \textit{myfile.bz2} file;  \\
+\\
+\texttt{unzip -l archive.zip} & list all files in the archive \\
+\texttt{unzip archive.zip} & decompress archive \\
+\texttt{zip archive.zip file1 file2} & add 2 files into archive \\
+\end{tabular}
+\\
+
+\section{Disk/Quota Utilities}
+\begin{tabular}{ll}
+
+\emph{command} & \emph{description} \\
+\texttt{quota -s} & display disk usage and limits in the home directory\\
+\texttt{pquota} & display disk usage and limits for all my projects\\
+\texttt{pquota myproject} & display disk usage and limits for project \textit{myproject}\\
+\texttt{pquota -u myproject} & display disk usage by every user in the project\\
+\texttt{du -hs} & display disk usage by all regular files and folders in the current dir\\
+\texttt{du -hs  .[\^{}.]* *} & display disk usage by all files and dirs including dotfiles\\
+\\
+\end{tabular}
+
+\section{System}
+\begin{tabular}{ll}
+
+\emph{command} & \emph{description} \\
+\texttt{/usr/local/etc/distro} & check version of operating system\\
+\texttt{cat /proc/cpuinfo} & display information about CPU model of the node \\
+\texttt{free -m} & display information about free and used memory on the node  \\
+\texttt{df -h} & report file system disk space usage \\
+\texttt{hostname} & show hostname of the node  \\
+\texttt{printenv} & list all currently defined environment variables  \\
+\texttt{date} & show the current date and time  \\
+\texttt{top -u username} & display all processes started by the user \textit{username} \\
+\texttt{ps -f} & display info about all running processes started by user  \\
+\texttt{ps -aux} & display info about all processes started by all users  \\
+\\
+\end{tabular}
+
+\section{Pipes and Other useful utilities and commands}
+\begin{tabular}{ll}
+
+\emph{command} & \emph{description} \\
+\texttt{qstat -u username | wc -l} & calculate the number of lines in \textit{qstat} output\\
+\texttt{qstat | awk '\{print \$3;\}'} & print 3rd column of the \textit{qstat} output\\
+\texttt{command | sort} & sort output of the prev. command\\
+\texttt{command | unique} & eliminate duplicates\\
+\texttt{command > output.txt} & redirect output of \textit{command} to a file \textit{output.txt}\\
+\texttt{command >> output.txt} & append output of \textit{command} to a file \textit{output.txt}\\
+\\\\
+\end{tabular}
+
+\vskip 1in
+
+\hrule
+\vskip 0.1in
+Research Computing Services, IS\&T, Boston University,
+\href{http://www.bu.edu/tech/support/research/}{http://www.bu.edu/tech/support/research/}
+\end{multicols}
+
+\end{document}

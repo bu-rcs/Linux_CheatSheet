@@ -6,7 +6,7 @@ A collection of basic Linux commands and utilities for Shared Computing Cluster 
 
 ## Authors
 
-* **Katia Oleinik** - *Research Computing Cluster* - [rcs.bu.edu](http://www.bu.edu/tech/support/research/)
+* **Katia Oleinik** - *Research Computing Services, IS&T, Boston University* - [rcs.bu.edu](http://www.bu.edu/tech/support/research/)
 
 ## License
 

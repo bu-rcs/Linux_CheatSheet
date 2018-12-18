@@ -80,6 +80,7 @@
 \texttt{mkdir dirname } & create a new directory \textit{dirname}\\
 \texttt{mkdir -p /path.to/dirname } & create new directory, make parent directories as needed\\
 \texttt{cp -r dir1 /path/to/dir2} & copy directory \textit{dir1} to \textit{dir2}, creating \textit{dir2} if needed\\
+\texttt{cp -r /path/to/mydir  .} & copy directory \textit{mydir} to my current directory\\
 \texttt{mv dir1 dir2} & rename (move) directory \textit{dir1} to \textit{dir2}\\
 \texttt{mv mydir /path/to/another/dir} & move directory \textit{mydir} to another location\\ 
 \texttt{rmdir dirname } & delete empty directory \textit{dirname}\\
@@ -102,7 +103,6 @@
 \texttt{cp myfile mydir} & copy file \textit{myfile} to sub-directory \textit{mydir}\\
 \texttt{cp myfile /path/to/mydir} & copy file \textit{myfile} to a directory\\
 \texttt{cp /path/to/myfile  .} & copy file \textit{myfile} from other directory to my current directory\\
-\texttt{cp -r /path/to/mydir  .} & copy directory \textit{mydir} to my current directory\\
 \texttt{mv file1 file2} & rename (move) file \textit{file1} to file \textit{file2}\\
 \texttt{mv myfile /path/to/mydir} & move file \textit{myfile} to another location\\\\
 \texttt{head myfile} & display first 10 lines of  \textit{myfile} \\
@@ -115,7 +115,7 @@
 \texttt{wc -l myfile} & number of lines in \textit{myfile} \\
 \texttt{wc -w myfile} & number of words in \textit{myfile} \\
 \texttt{wc -c myfile} & number of characters in \textit{myfile} \\\\
-\texttt{cat file1 file2} & concatenate 2 (or more ) files \\
+\texttt{cat file1 file2} & concatenate 2 (or more) files \\
 \texttt{cat file*.txt > all.txt} & concatenate files and save result in file \textit{all.txt} \\
 
 \\
